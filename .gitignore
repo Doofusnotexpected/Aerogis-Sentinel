@@ -6,3 +6,4 @@ rockyou.txt
 __pycache__/
 FileKey
 FileKey.pub
+venv/

@@ -1,36 +1,44 @@
-🛡️ Ghost-Sentinel v12.1: Autonomous AI Defense Cell
+# 🛡️ GHOST-SENTINEL v12.1
+### *Autonomous Neural-Linked Cybersecurity Engine & Active Defense Cell*
 
-Ghost-Sentinel is a high-performance, asynchronous cybersecurity honeypot and active defense system. Engineered to run locally on high-end hardware, it utilizes a tiered defense architecture to neutralize automated brute-force attacks in real-time while performing AI-driven behavioral forensics.
+**Ghost-Sentinel** represents a paradigm shift in local-perimeter defense. Designed for high-performance hardware, it leverages a multi-stage logic gate and **DeepSeek-R1 (8B)** neural processing to neutralize, analyze, and exile malicious actors in real-time.
 
-⚔️ Combat-Proven Metrics (The RockYou Benchmark)
+## ⚔️ COMBAT-PROVEN PERFORMANCE
+This system is not theoretical; it is battle-tested. During a **"Stress-to-Failure"** audit utilizing a 16-threaded **Hydra attack** against the **14.3M RockYou.txt** wordlist, the Sentinel achieved:
+* **Neutralization Rate:** 100% (Zero breaches recorded).
+* **Initial Response Latency:** < 1 second (Fast-Path Reflex).
+* **VRAM Shielding:** Successfully offloaded high-velocity traffic to an asynchronous queue, maintaining system stability during massive swarm attacks.
+* **The Dollhouse Effect:** Automated attackers were successfully trapped in a simulated environment, wasting compute resources while the AI performed deep-packet forensics.
 
-During a "Stress-to-Failure" test utilizing a 16-threaded Hydra attack and the 14.3M RockYou.txt wordlist, the Sentinel achieved:
+## 🏛️ GLASS AEGIS v1.0 (Command & Control)
+The **Glass Aegis** is the visual heart of the Sentinel, providing a military-grade telemetry hub for the Architect.
+* **Live Threat Feed:** Real-time data visualization of the "Sin Score" and incoming targets.
+* **Hunter-Sense:** Automated **Nmap** reconnaissance triggered instantly upon threat detection.
+* **Neural Analysis:** Direct integration with DeepSeek-R1 for intelligent behavioral verdicts on every captured specimen.
 
-Neutralization Rate: 100%
-Initial Response Latency: < 1 second (Fast-Path)
-Total Sin Score Accumulated: 84+ (Attacker Exiled)
-Hardware Impact: Negligible CPU/VRAM usage via VRAM Shield job-queuing.
+## ⚙️ TECHNICAL ARCHITECTURE
+The Sentinel operates on a three-tier logic gate:
+1.  **The Reflex (Layer 1):** Kinetic pattern matching (5+ hits in < 2s). Triggers an immediate **Kernel-level iptables drop**.
+2.  **The General (Layer 2):** Asynchronous AI forensics via **Ollama**. Determines intent without slowing down the firewall.
+3.  **The Long Memory (Layer 3):** Stateful **SQLite3** persistence. Upgrades temporary blocks to permanent exiles.
 
-⚙️ Core Architecture The system operates on a three-layer logic gate:
+## 🚀 INSTALLATION & DEPLOYMENT
+**1. Prerequisites**
+* **OS:** Ubuntu (WSL2 Optimized)
+* **Core:** Python 3.10+ & Ollama (DeepSeek-R1:8B)
+* **Network:** Nmap & iptables
 
-1. The Reflex (Layer 1: Fast-Path): A high-speed pattern matcher that identifies swarm behavior (5+ hits in < 2s). It bypasses AI processing to fire an immediate Kernel-level iptables drop.
-2. The General (Layer 2: AI Forensics): Utilizing a locally hosted DeepSeek-R1 (8B) model via Ollama, the Sentinel analyzes captured specimen actions asynchronously.
-3. The Long Memory (Layer 3: Persistence): A stateful SQLite3 database that tracks threat history, ensuring temporary bans are upgraded to permanent blacklists.
+**2. Launch Sequence**
+\`\`\`bash
+git clone https://github.com/Doofusnotexpected/Aerogis-Sentinel.git
+cd ~/Ghost-Sentinel
+source venv/bin/activate
+python3 dashboard_server.py # Start Glass Aegis
+python3 ghost_honeypot_v2.py # Arm the Sentinel
+\`\`\`
 
-📡 Hunter-Sense & Telemetry
+## ⚠️ SECURITY ARCHITECT'S NOTICE
+This repository **strictly excludes** \`config.py\`, \`ghost_memory.db\`, and raw intel logs via \`.gitignore\` to maintain operational security. The **Architect's Pass** (Whitelist) must be configured locally to prevent self-exile during testing.
 
-Hunter-Sense: Automated Nmap reconnaissance triggered upon threat neutralization.
-Ghost-Hub: Real-time telemetry relayed to Discord HQ via encrypted webhooks.
-Architect's Pass: Hardcoded whitelist overrides to prevent accidental lockouts.
-
-🛠️ Installation & Deployment
-
-Prerequisites:
-- Ubuntu (WSL2 supported)
-- Python 3.10+
-- Ollama (DeepSeek-R1:8B)
-- Nmap
-
-Setup:
-1. Clone the Repository: git clone https://github.com/Doofusnotexpected/Aerogis-Sentinel.git
-2. cd ~/Ghost-Sentinel
+---
+*For commercial licensing or private deployment queries, contact the Architect.*

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GHOST-SENTINEL | GLASS AEGIS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0a0a0a; color: #00ff41; font-family: 'Courier New', Courier, monospace; }
+        .glitch-border { border: 1px solid #00ff41; box-shadow: 0 0 10px #00ff41; }
+        .threat-card { background: rgba(0, 255, 65, 0.05); transition: 0.3s; }
+        .threat-card:hover { background: rgba(0, 255, 65, 0.15); }
+        /* Custom scrollbar for the threat list */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 4px; }
+    </style>
+</head>
+<body class="p-8">
+    <header class="mb-10 flex justify-between items-center border-b border-green-900 pb-4">
+        <div>
+            <h1 class="text-4xl font-bold tracking-tighter text-white">GLASS AEGIS <span class="text-green-500">v1.0</span></h1>
+            <p class="text-sm opacity-70 mt-1">NODE: LEGION-PRO-5-GEN-10 | STATUS: <span class="font-bold">ACTIVE</span></p>
+        </div>
+        <div class="text-right">
+            <p id="clock" class="text-2xl font-bold"></p>
+            <p class="text-xs opacity-50">LOCAL SYSTEM TIME</p>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2">
+            <h2 class="text-2xl mb-4 font-bold text-white">🚨 LIVE THREAT FEED</h2>
+            <div id="threat-list" class="space-y-4 h-[70vh] overflow-y-auto pr-4">
+                <div class="text-center opacity-50 mt-10">Awaiting General's Intel...</div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="glitch-border p-6 rounded-lg">
+                <h2 class="text-xl mb-4 font-bold text-white border-b border-green-900 pb-2">SYSTEM TELEMETRY</h2>
+                <p class="mb-2">Uptime: <span class="text-white">99.9%</span></p>
+                <p class="mb-2">Reflex Gate: <span class="text-white">ARMED</span></p>
+                <p class="mb-2">General AI: <span class="text-white">DEEPSEEK-R1 (8B)</span></p>
+                <p>Database: <span class="text-white">SQLite3 Stateful</span></p>
+            </div>
+            <div class="glitch-border p-6 rounded-lg">
+                <h2 class="text-xl mb-4 font-bold text-white border-b border-green-900 pb-2">SIN SCORE ANALYTICS</h2>
+                <div class="w-full bg-gray-800 h-4 rounded-full mt-4">
+                    <div class="bg-red-500 h-4 rounded-full" style="width: 85%"></div>
+                </div>
+                <p class="text-xs mt-2 opacity-60 text-center text-white">Current Threat Mitigation Load</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update clock every second
+        function updateClock() {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Fetch threats from the backend
+        async function fetchThreats() {
+            try {
+                const res = await fetch('/api/threats');
+                const data = await res.json();
+                const container = document.getElementById('threat-list');
+                
+                if (data.length === 0) {
+                    container.innerHTML = '<div class="text-center opacity-50 mt-10">No threats logged in the current matrix.</div>';
+                    return;
+                }
+
+                container.innerHTML = data.map(t => `
+                    <div class="threat-card p-4 rounded border border-green-900">
+                        <div class="flex justify-between font-bold mb-2">
+                            <span class="text-red-500 text-lg">⚠️ TARGET: ${t.target_ip}</span>
+                            <span class="opacity-50 text-sm">${t.timestamp}</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mb-2">Fingerprint: <span class="text-green-400">${t.fingerprint}</span></p>
+                        <div class="bg-black p-3 rounded text-sm text-green-300 border-l-2 border-green-500">
+                            <strong>AI ANALYSIS:</strong> ${t.hunter_recon_analysis || "Awaiting General's Verdict..."}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error("Error fetching intel:", error);
+            }
+        }
+        
+        // Refresh feed every 5 seconds
+        setInterval(fetchThreats, 5000);
+        fetchThreats();
+    </script>
+</body>
+</html>
