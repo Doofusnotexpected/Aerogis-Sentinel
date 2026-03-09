@@ -1,0 +1,8 @@
+config.py
+ghost_memory.db
+rockyou.txt
+*.csv
+*.json
+__pycache__/
+FileKey
+FileKey.pub
