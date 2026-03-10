@@ -41,18 +41,21 @@ This system interacts directly with the Linux kernel and requires strict environ
 
 ### **2. Initial Setup & Configuration**
 Clone the repository and isolate the environment:
+
 ```bash
 git clone [https://github.com/Doofusnotexpected/Aerogis-Sentinel.git](https://github.com/Doofusnotexpected/Aerogis-Sentinel.git)
 cd ~/Ghost-Sentinel
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
 
-(Note: You must create your own config.py file to hold your Discord Webhook URL and Whitelist IPs before launching).
+*(Note: You must create your own `config.py` file to hold your Discord Webhook URL and Whitelist IPs before launching).*
 
-3. The Launch Sequence
+### **3. The Launch Sequence**
 For maximum stability, the architecture must be launched across three separate terminal threads:
 
+```bash
 # Thread 1: Wake the Neural Engine
 ollama run deepseek-r1:8b
 
@@ -62,25 +65,27 @@ python3 dashboard_server.py
 
 # Thread 3: Arm the Kinetic Sentinel (Requires Root)
 sudo ./venv/bin/python3 ghost_honeypot_v2.py
+```
 
-4. External Connectivity (Optional)
+### **4. External Connectivity (Optional)**
 To expose the trap to the public internet, initialize a secure tunnel to Port 2222:
 
+```bash
 zrok reserve public localhost:2222 --unique-name <your-custom-name>
 zrok share reserved <your-custom-name>
+```
 
-⚠️ SECURITY ARCHITECT'S NOTICE & WARNINGS
-The Whitelist Paradox: This repository strictly excludes config.py, ghost_memory.db, and raw intel logs via .gitignore to maintain operational security. You must configure the Architect's Pass (Whitelist) locally with your own IP addresses. Failure to do so will result in the Sentinel permanently banning your own devices during testing.
+---
 
-State Volatility: Zrok public gates are volatile. If the host machine reboots, the public tunnel must be re-initialized.
+## ⚠️ SECURITY ARCHITECT'S NOTICE & WARNINGS
+* **The Whitelist Paradox:** This repository strictly excludes `config.py`, `ghost_memory.db`, and raw intel logs via `.gitignore` to maintain operational security. You **must** configure the **Architect's Pass** (Whitelist) locally with your own IP addresses. Failure to do so will result in the Sentinel permanently banning your own devices during testing.
+* **State Volatility:** Zrok public gates are volatile. If the host machine reboots, the public tunnel must be re-initialized.
 
-⚖️ COMMERCIAL & LICENSING TERMS
-Ghost-Sentinel v12.1 operates under a dual-license architecture:
+---
 
-Open Source: Available under the GPL-3.0 License for community review and transparency.
+## ⚖️ COMMERCIAL & LICENSING TERMS
+**Ghost-Sentinel v12.1** operates under a dual-license architecture:
+1. **Open Source:** Available under the **GPL-3.0 License** for community review and transparency.
+2. **Enterprise/Proprietary:** For use in proprietary, closed-source, or for-profit environments, a separate commercial license is required.
 
-Enterprise/Proprietary: For use in proprietary, closed-source, or for-profit environments, a separate commercial license is required.
-
-For commercial licensing or private deployment queries, contact the Architect.
-
-
+*For commercial licensing or private deployment queries, contact the Architect.*
