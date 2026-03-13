@@ -1,51 +1,47 @@
 # 🛡️ GHOST-SENTINEL v12.1
+### Local-Perimeter AI Honeypot & Active Defense Cell
 
-### *Autonomous Neural-Linked Cybersecurity Engine & Active Defense Cell*
-
-**Ghost-Sentinel** represents a paradigm shift in local-perimeter defense. Designed for high-performance hardware, it leverages a multi-stage logic gate and **DeepSeek-R1 (8B)** neural processing to neutralize, analyze, and exile malicious actors in real-time.
-
----
-
-## ⚔️ COMBAT-PROVEN PERFORMANCE
-
-This system is not theoretical; it is 100% verified and battle-tested across three distinct threat vectors:
-* **The Brawn (Telnet Swarm):** 100% neutralization of 16-threaded Hydra attacks against the 14.3M RockYou wordlist. The kernel-level block triggered so fast it caused the automated tool's child processes to collapse.
-* **The Restraint (SSH Scout):** Successfully identified `libssh` automated reconnaissance probes without overreacting, demonstrating "calm under pressure" AI forensics.
-* **The Brain (Human Breach):** Safely trapped manual Netcat injections, harvesting payloads like `cat /etc/shadow` and issuing intelligent, context-aware Perma-Bans based on intent.
+Ghost-Sentinel is a multi-threaded active defense cell built to solve a specific problem: running local LLM forensics without bottlenecking a host firewall. It uses a multi-stage logic gate and a local DeepSeek-R1 model to neutralize, analyze, and exile malicious actors in real-time.
 
 ---
 
-## 🏛️ THE FOUR-GATE ARCHITECTURE
+## ⚔️ STRESS TEST BENCHMARKS
+This architecture was built and audited against three distinct threat vectors:
 
-The Sentinel operates on a highly optimized, multi-threaded four-layer grid:
-
-1. **The Reflex (Layer 1):** Kinetic Fast-Path. Detects high-velocity swarms (**5+ hits in < 5s**) and drops an instant kernel-level `iptables` block before the AI even wakes up. Protocol-blind and ruthless.
-2. **The Dollhouse (Layer 2):** Protocol-Agnostic Low-Interaction Trap. Mimics an Ubuntu 22.04 LTS shell on Port 2222. Uses a **Multi-Threaded Receptionist** to instantly hand off massive connection floods without bottlenecking the main loop.
-3. **The General (Layer 3):** Asynchronous VRAM Shield. **DeepSeek-R1:8B** sits behind a Python `queue`, forensically analyzing harvested keystrokes to determine human intent vs. automated noise. Authorizes permanent exiles to a SQLite database.
-4. **Glass Aegis & Hunter-Sense (Layer 4):** The command center. Executes resilient automated `nmap` reconnaissance and beams "Executive Strike" reports directly to Discord.
+* **High-Volume Swarms (Telnet):** Successfully neutralized a 16-threaded Hydra attack against the 14.3M RockYou wordlist. The kernel-level block triggers fast enough to collapse the automated tool's child processes.
+* **Automated Recon (SSH):** Identified `libssh` automated reconnaissance probes without overreacting, avoiding false-positive bans on standard network scanners.
+* **Manual Breaches (Netcat):** Safely trapped manual injections, harvesting payloads like `cat /etc/shadow` and issuing intelligent, context-aware database bans based on the attacker's intent.
 
 ---
 
-## ⚙️ TECHNICAL SPECIFICATIONS & HOST
+## 🏛️ ARCHITECTURE OVERVIEW
+The Sentinel operates on a highly optimized four-layer grid:
 
-* **Host Machine:** Lenovo Legion Pro 5 (WSL2 Ubuntu Bridge).
-* **The GPU:** NVIDIA RTX 5060 (8GB VRAM) With CUDA 12.2 Or 8GB VRAM Equivalent Or better
-* **The Data Vault:** SQLite persistence engineered with `timeout=10` to prevent database locking during heavy multi-threaded botnet swarms.
+* **Layer 1 (The Reflex):** Kinetic Fast-Path. Detects high-velocity swarms (**5+ hits in < 5s**) and drops an instant kernel-level `iptables` block before the AI even wakes up.
+* **Layer 2 (The Dollhouse):** Protocol-Agnostic Low-Interaction Trap. Mimics an Ubuntu 22.04 LTS shell on Port 2222. Uses a **Multi-Threaded Receptionist** to instantly hand off massive connection floods without bottlenecking the main loop.
+* **Layer 3 (The General):** Asynchronous AI Forensics. **DeepSeek-R1 (8B)** sits behind a Python `queue.Queue()`, forensically analyzing harvested keystrokes to determine human intent vs. automated noise. Authorizes permanent exiles to a SQLite database.
+* **Layer 4 (Glass Aegis):** Command & Control. Executes resilient automated `nmap` reconnaissance and beams formatting strike reports directly to a Discord webhook.
+
+---
+
+## ⚙️ ENVIRONMENT & HARDWARE BENCHMARKS
+* **Environment:** Ubuntu 22.04 LTS (Tested natively and via WSL2 Bridge).
+* **AI Inference (Tested Hardware):** Benchmarked on an NVIDIA RTX 5060 (8GB VRAM) running CUDA 13.2. *(Note: Any CUDA-compatible GPU with ~8GB VRAM is recommended to run the 8B model smoothly without latency).*
+* **State Management:** SQLite persistence engineered with `timeout=10` to prevent database locking during heavy multi-threaded botnet swarms.
 
 ---
 
 ## 🚀 INSTALLATION & DEPLOYMENT
 
-### **1. Critical Prerequisites**
+### 1. Critical Prerequisites
 This system interacts directly with the Linux kernel and requires strict environment setup.
-* **OS:** Ubuntu 22.04 LTS (WSL2 Optimized).
 * **Core:** Python 3.10+ & Ollama (DeepSeek-R1:8B).
 * **System Binaries:** Nmap and Iptables **must** be installed at the root system level.
 ```bash
 sudo apt update && sudo apt install nmap iptables
 ```
 
-### **2. Initial Setup & Configuration**
+### 2. Initial Setup & Configuration
 Clone the repository and isolate the environment:
 ```bash
 git clone [https://github.com/Doofusnotexpected/Aerogis-Sentinel.git](https://github.com/Doofusnotexpected/Aerogis-Sentinel.git)
@@ -56,11 +52,11 @@ pip install -r requirements.txt
 ```
 *(Note: You must create your own `config.py` file to hold your Discord Webhook URL and `GENERAL_IP` before launching).*
 
-### **3. The Launch Sequence**
-For maximum stability, the architecture must be launched across multiple terminal threads:
+### 3. The Launch Sequence
+For maximum stability, the architecture should be launched across multiple terminal threads:
 ```bash
-# Thread 1: Wake the Neural Engine (Windows Host)
-ollama run deepseek-r1:8b
+# Thread 1: Wake the Neural Engine
+ollama run deepseek-r1:8b (ollama.exe if it didn't work)
 
 # Thread 2: Start the Glass Aegis Command Center
 cd ~/Ghost-Sentinel && ./venv/bin/python3 dashboard_server.py 
@@ -69,14 +65,14 @@ cd ~/Ghost-Sentinel && ./venv/bin/python3 dashboard_server.py
 cd ~/Ghost-Sentinel && sudo ./venv/bin/python3 ghost_honeypot_v2.py
 ```
 
-### **4. The Amnesia Protocol (Resetting the Trap)**
+### 4. The Amnesia Protocol (Resetting the Trap)
 To clear the Sentinel's memory and unban yourself after testing manual breaches, flush the firewall and wipe the data vault:
 ```bash
 sudo iptables -F
 sudo rm -f /home/aerogis/ghost_memory.db /home/aerogis/threat_intel.json
 ```
 
-### **5. Public Dashboard Tunnel (Zrok Automation)**
+### 5. Public Dashboard Tunnel (Zrok Automation)
 To expose the Glass Aegis live threat feed to the public internet securely (runs silently in the background):
 ```bash
 nohup zrok share reserved <your-share-token> > /dev/null 2>&1 &
@@ -85,16 +81,12 @@ nohup zrok share reserved <your-share-token> > /dev/null 2>&1 &
 
 ---
 
-## ⚠️ SECURITY ARCHITECT'S NOTICE & WARNINGS
-
-* **The Whitelist Paradox:** This repository strictly excludes `config.py`, `ghost_memory.db`, and raw intel logs via `.gitignore` to maintain operational security. You **must** configure the **Architect's Pass** (Whitelist) locally in the master script with your own IP address (e.g., `127.0.0.1`). Failure to do so will result in the Sentinel permanently banning your own devices during testing.
+## ⚠️ SECURITY ARCHITECT'S NOTICE
+**The Whitelist Paradox:** This repository strictly excludes `config.py`, `ghost_memory.db`, and raw intel logs via `.gitignore` to maintain operational security. You **must** configure the Architect's Pass (Whitelist) locally in the master script with your own IP address (e.g., `127.0.0.1`). Failure to do so will result in the Sentinel permanently banning your own devices during testing.
 
 ---
 
-## ⚖️ COMMERCIAL & LICENSING TERMS
-
+## ⚖️ LICENSING
 **Ghost-Sentinel v12.1** operates under a dual-license architecture:
-1. **Open Source:** Available under the **GPL-3.0 License** for community review and transparency.
-2. **Enterprise/Proprietary:** For use in proprietary, closed-source, or for-profit environments, a separate commercial license is required.
-
-*For commercial licensing or private deployment queries, contact the Architect.*
+* **Open Source:** Available under the **GPL-3.0 License** for community review and transparency.
+* **Enterprise/Proprietary:** For use in proprietary, closed-source, or for-profit environments, a separate commercial license is required.
