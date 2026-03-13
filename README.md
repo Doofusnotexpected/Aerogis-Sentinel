@@ -29,7 +29,7 @@ The Sentinel operates on a highly optimized, multi-threaded four-layer grid:
 ## ⚙️ TECHNICAL SPECIFICATIONS & HOST
 
 * **Host Machine:** Lenovo Legion Pro 5 (WSL2 Ubuntu Bridge).
-* **The Muscle:** NVIDIA RTX 5060 (8GB VRAM) natively tuned with CUDA 13.2 for zero-lag AI inference.
+* **The GPU:** NVIDIA RTX 5060 (8GB VRAM) With CUDA 12.2 Or 8GB VRAM Equivalent Or better
 * **The Data Vault:** SQLite persistence engineered with `timeout=10` to prevent database locking during heavy multi-threaded botnet swarms.
 
 ---
