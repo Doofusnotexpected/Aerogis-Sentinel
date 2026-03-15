@@ -20,7 +20,7 @@ The Sentinel operates on a highly optimized four-layer grid:
 * **Layer 1 (The Reflex):** Kinetic Fast-Path. Detects high-velocity swarms (**5+ hits in < 5s**) and drops an instant kernel-level `iptables` block before the AI even wakes up.
 * **Layer 2 (The Dollhouse):** Protocol-Agnostic Low-Interaction Trap. Mimics an Ubuntu 22.04 LTS shell on Port 2222. Uses a **Multi-Threaded Receptionist** to instantly hand off massive connection floods without bottlenecking the main loop.
 * **Layer 3 (The General):** Asynchronous AI Forensics. **DeepSeek-R1 (8B)** sits behind a Python `queue.Queue()`, forensically analyzing harvested keystrokes to determine human intent vs. automated noise. Authorizes permanent exiles to a SQLite database.
-* **Layer 4 (Glass Aegis):** Command & Control. Executes resilient automated `nmap` reconnaissance and beams formatting strike reports directly to a Discord webhook.
+* **Layer 4 (Glass Aegis):** Command & Control. Executes resilient automated `nmap` reconnaissance and beams formatted strike reports directly to a Discord webhook.
 
 ---
 
@@ -45,31 +45,42 @@ sudo apt update && sudo apt install nmap iptables
 Clone the repository and isolate the environment:
 ```bash
 git clone [https://github.com/Doofusnotexpected/Aerogis-Sentinel.git](https://github.com/Doofusnotexpected/Aerogis-Sentinel.git)
-cd ~/Ghost-Sentinel
+cd Aerogis-Sentinel
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
-*(Note: You must create your own `config.py` file to hold your Discord Webhook URL and `GENERAL_IP` before launching).*
+
+**Create the Configuration File:**
+You must create a `config.py` file in the project root to securely hold your variables.
+```bash
+nano config.py
+```
+*Add the following lines:*
+```python
+# config.py
+GENERAL_IP = "127.0.0.1" # The script will auto-detect if you are running WSL!
+DISCORD_WEBHOOK_URL = "[https://discord.com/api/webhooks/your_webhook_here](https://discord.com/api/webhooks/your_webhook_here)"
+```
 
 ### 3. The Launch Sequence
 For maximum stability, the architecture should be launched across multiple terminal threads:
 ```bash
 # Thread 1: Wake the Neural Engine
-ollama run deepseek-r1:8b (ollama.exe if it didn't work)
+ollama run deepseek-r1:8b
 
 # Thread 2: Start the Glass Aegis Command Center
-cd ~/Ghost-Sentinel && ./venv/bin/python3 dashboard_server.py 
+cd ~/Aerogis-Sentinel && source venv/bin/activate && python3 dashboard_server.py 
 
 # Thread 3: Arm the Kinetic Sentinel (Requires Root)
-cd ~/Ghost-Sentinel && sudo ./venv/bin/python3 ghost_honeypot_v2.py
+cd ~/Aerogis-Sentinel && source venv/bin/activate && sudo python3 ghost_honeypot_v2.py
 ```
 
 ### 4. The Amnesia Protocol (Resetting the Trap)
-To clear the Sentinel's memory and unban yourself after testing manual breaches, flush the firewall and wipe the data vault:
+To clear the Sentinel's memory and unban yourself after testing manual breaches, flush the firewall and wipe the local data vault:
 ```bash
 sudo iptables -F
-sudo rm -f /home/aerogis/ghost_memory.db /home/aerogis/threat_intel.json
+sudo rm -f ghost_memory.db threat_intel.json
 ```
 
 ### 5. Public Dashboard Tunnel (Zrok Automation)
@@ -77,7 +88,7 @@ To expose the Glass Aegis live threat feed to the public internet securely (runs
 ```bash
 nohup zrok share reserved <your-share-token> > /dev/null 2>&1 &
 ```
-*Access the dashboard via `http://localhost:5555` locally or through your Zrok URL.*
+Access the dashboard via `http://localhost:5555` locally or through your Zrok URL.
 
 ---
 
