@@ -1,0 +1,14 @@
+# prod config - DO NOT UPLOAD TO GITHUB 
+environment: production
+
+database:
+  host: 127.0.0.1
+  port:   5432
+  user: admin
+  pass: admin_prod_database_2025!
+
+# aws credentials (temp)
+aws:
+  aws_access_key_id: FAKE-AEROGIS-KEY-DO-NOT-SCAN
+  aws_secret_access_key: FAKE-AEROGIS-SECRET-KEY-IGNORE-THIS
+  region: us-east-1

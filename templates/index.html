@@ -9,7 +9,6 @@
         .glitch-border { border: 1px solid #00ff41; box-shadow: 0 0 10px #00ff41; }
         .threat-card { background: rgba(0, 255, 65, 0.05); transition: 0.3s; }
         .threat-card:hover { background: rgba(0, 255, 65, 0.15); }
-        /* Custom scrollbar for the threat list */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 4px; }
@@ -18,7 +17,7 @@
 <body class="p-8">
     <header class="mb-10 flex justify-between items-center border-b border-green-900 pb-4">
         <div>
-            <h1 class="text-4xl font-bold tracking-tighter text-white">GLASS AEGIS <span class="text-green-500">v1.0</span></h1>
+            <h1 class="text-4xl font-bold tracking-tighter text-white">GLASS AEGIS <span class="text-green-500">v1.2</span></h1>
             <p class="text-sm opacity-70 mt-1">NODE: LEGION-PRO-5-GEN-10 | STATUS: <span class="font-bold">ACTIVE</span></p>
         </div>
         <div class="text-right">
@@ -41,12 +40,12 @@
                 <p class="mb-2">Uptime: <span class="text-white">99.9%</span></p>
                 <p class="mb-2">Reflex Gate: <span class="text-white">ARMED</span></p>
                 <p class="mb-2">General AI: <span class="text-white">DEEPSEEK-R1 (8B)</span></p>
-                <p>Database: <span class="text-white">SQLite3 Stateful</span></p>
+                <p>Database: <span class="text-white">SQLite3 Stateful (RAM-Disk)</span></p>
             </div>
             <div class="glitch-border p-6 rounded-lg">
                 <h2 class="text-xl mb-4 font-bold text-white border-b border-green-900 pb-2">SIN SCORE ANALYTICS</h2>
-                <div class="w-full bg-gray-800 h-4 rounded-full mt-4">
-                    <div class="bg-red-500 h-4 rounded-full" style="width: 85%"></div>
+                <div class="w-full bg-gray-800 h-4 rounded-full mt-4 overflow-hidden">
+                    <div id="sin-bar" class="bg-red-500 h-4 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
                 </div>
                 <p class="text-xs mt-2 opacity-60 text-center text-white">Current Threat Mitigation Load</p>
             </div>
@@ -54,35 +53,42 @@
     </div>
 
     <script>
-        // Update clock every second
         function updateClock() {
             document.getElementById('clock').innerText = new Date().toLocaleTimeString();
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Fetch threats from the backend
         async function fetchThreats() {
             try {
-                const res = await fetch('/api/threats');
+                // Added a timestamp bypass so the browser never caches old data
+                const res = await fetch('/api/threats?t=' + new Date().getTime());
                 const data = await res.json();
-                const container = document.getElementById('threat-list');
                 
-                if (data.length === 0) {
+                const sinBar = document.getElementById('sin-bar');
+                if (sinBar && data.sin_load !== undefined) {
+                    sinBar.style.width = data.sin_load + "%";
+                }
+
+                const container = document.getElementById('threat-list');
+                const threats = data.threats || [];
+                
+                if (threats.length === 0) {
                     container.innerHTML = '<div class="text-center opacity-50 mt-10">No threats logged in the current matrix.</div>';
                     return;
                 }
 
-                container.innerHTML = data.map(t => `
+                container.innerHTML = threats.map(t => `
                     <div class="threat-card p-4 rounded border border-green-900">
                         <div class="flex justify-between font-bold mb-2">
                             <span class="text-red-500 text-lg">⚠️ TARGET: ${t.target_ip}</span>
                             <span class="opacity-50 text-sm">${t.timestamp}</span>
                         </div>
                         <p class="text-sm text-gray-300 mb-2">Fingerprint: <span class="text-green-400">${t.fingerprint}</span></p>
-                        <div class="bg-black p-3 rounded text-sm text-green-300 border-l-2 border-green-500">
-                            <strong>AI ANALYSIS:</strong> ${t.hunter_recon_analysis || "Awaiting General's Verdict..."}
+                        <div class="bg-black p-3 rounded text-sm text-green-300 border-l-2 border-green-500 mb-2">
+                            <strong>AI VERDICT:</strong> ${t.ai_logic || "Awaiting General's Verdict..."}
                         </div>
+                        <p class="text-xs text-gray-400 opacity-70"><strong>RECON:</strong> ${t.recon || "No data."}</p>
                     </div>
                 `).join('');
             } catch (error) {
@@ -90,7 +96,6 @@
             }
         }
         
-        // Refresh feed every 5 seconds
         setInterval(fetchThreats, 5000);
         fetchThreats();
     </script>
