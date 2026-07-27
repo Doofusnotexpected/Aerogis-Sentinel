@@ -100,4 +100,4 @@ Access the dashboard via `http://localhost:5555` locally or through your Zrok UR
 ## ⚖️ LICENSING
 **Ghost-Sentinel v12.1** operates under a dual-license architecture:
 * **Open Source:** Available under the **GPL-3.0 License** for community review and transparency.
-* **Enterprise/Proprietary:** For use in proprietary, closed-source, or for-profit environments, a separate commercial license is required.
+* **Enterprise/Proprietary:** For use in proprietary, closed-source, or for-profit environments, a separate commercial license is required. 
