@@ -5,7 +5,6 @@
 >
 > A Layer-2 kernel firewall with an embedded DeepSeek-R1 LLM and a mathematical RAM-shield, built to survive brute-force swarms and prevent LLM context exhaustion locally.
 
-![Glass Aegis Dashboard](assets/dashboard.png)
 
 
 Ghost-Sentinel is a multi-threaded active defense cell built to solve a specific problem: running local LLM forensics without bottlenecking a host firewall. It uses a tiered logic gate, `nftables` high-speed sets, and a local AI to neutralize, analyze, and exile malicious actors in real-time.
