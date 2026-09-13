@@ -23,7 +23,7 @@ Ghost-Sentinel solves this using a dual-cache mathematical pre-filter before the
 
 ## ⚔️ STRESS TEST RESULTS
 This architecture has been tested against the following threat vectors:
-* **High-Volume Swarms (Telnet & SSH):** Neutralized Hydra attacks (16 parallel threads) against the 14.3M RockYou wordlist across both Telnet and SSH. The `nftables` kernel-level block triggers fast enough to choke the tool, forcing its child processes to crash via connection timeouts.
+* **High-Volume Swarms (Telnet & SSH):** Neutralized Hydra attacks (16 parallel threads and 64) against the 14.3M RockYou wordlist across both Telnet and SSH. The `nftables` kernel-level block triggers fast enough to choke the tool, forcing its child processes to crash via connection timeouts.
 * **Automated Recon (libssh/Nmap SSH Enumeration):** Correctly classified as reconnaissance rather than active exploitation by DeepSeek-R1 — no false-positive ban triggered.
 * **Manual Breaches (Netcat):** Trapped manual injections, logging payloads like `cat /etc/shadow` and issuing context-aware perma-bans based on attacker intent.
 
