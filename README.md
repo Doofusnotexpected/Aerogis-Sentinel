@@ -101,8 +101,3 @@ Ghost-Sentinel includes a modular legal/ethical toggle (`ACTIVE_RECON`) in the m
 
 ## ⚠️ NOTICE ON WHITELISTING
 This repository excludes `config.py` and data vaults via `.gitignore`. You must configure your own whitelist locally in the master script with your own IP address (`127.0.0.1` and `::1` are the defaults). Skipping this will result in the Sentinel banning your own devices.
-
-## ⚖️ LICENSING
-Ghost-Sentinel v13.5.2 is dual-licensed:
-* **Open source:** available under GPL-3.0 for community review.
-* **Commercial:** a separate commercial license is required for for-profit use.
