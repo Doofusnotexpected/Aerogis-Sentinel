@@ -99,7 +99,7 @@ To clear the RAM-disk memory and unban yourself after manual testing:
 ## 🛡️ RULES OF ENGAGEMENT
 AEROGIS includes a modular legal/ethical toggle (`ACTIVE_RECON`) in the master script:
 * **Passive Defense (default, False):** Silently logs, drops the connection, and sends telemetry. Suitable for public internet deployments.
-* **Active Defense (True):** Intended for internal LANs or authorized CTF ranges only. Fires an `nmap` port-scan back at the attacker's IP to map their OS and open services.
+* **Active Defense (True):** Intended only for networks you own or have explicit written permission to test (internal LANs, authorized CTF ranges). Scans are restricted to private IP addresses. Scanning third-party systems may be illegal in your jurisdiction. You are responsible for how you deploy Aerogis.
 
 ## ⚠️ NOTICE ON WHITELISTING
 This repository excludes `config.py` and data vaults via `.gitignore`. You must configure your own whitelist locally in the master script with your own IP address (`127.0.0.1` and `::1` are the defaults). Skipping this will result in the Sentinel banning your own devices.
