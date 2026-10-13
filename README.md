@@ -1,5 +1,7 @@
 # 🛡️ AEROGIS v13.5.2
-### Dual-Stack AI Active Defense Cell & Neural Siphon Architecture
+
+### Aero-Aegis
+### A Dual-Stack AI Active Defense Cell & Neural Siphon Architecture
 
 > A single-operator active defense system, engineered to run efficient AI threat analysis on consumer laptop hardware.
 >
