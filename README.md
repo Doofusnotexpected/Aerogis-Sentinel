@@ -1,4 +1,4 @@
-# 🛡️ GHOST-SENTINEL v13.5.2
+# 🛡️ AEROGIS v13.5.2
 ### Dual-Stack AI Active Defense Cell & Neural Siphon Architecture
 
 > A single-operator active defense system, engineered to run efficient AI threat analysis on consumer laptop hardware.
@@ -7,7 +7,7 @@
 
 
 
-Ghost-Sentinel is a multi-threaded active defense cell built to solve a specific problem: running local LLM forensics without bottlenecking a host firewall. It uses a tiered logic gate, `nftables` high-speed sets, and a local AI to neutralize, analyze, and exile malicious actors in real-time.
+AEROGIS is a multi-threaded active defense cell built to solve a specific problem: running local LLM forensics without bottlenecking a host firewall. It uses a tiered logic gate, `nftables` high-speed sets, and a local AI to neutralize, analyze, and exile malicious actors in real-time.
 
 ---
 
@@ -41,7 +41,7 @@ This architecture has been tested against the following threat vectors:
 
 ## ⚙️ ENVIRONMENT & HARDWARE
 * **Environment:** Ubuntu 24.04 LTS (tested natively and via WSL2 mirrored networking).
-* **AI Inference (Tested Hardware):** Lenovo Legion RTX 5060 Laptop GPU (8GB VRAM) via Ollama's bundled CUDA runtime, with 24GB DDR5 system RAM.
+* **Tested Hardware:** Lenovo Legion RTX 5060 Laptop GPU (8GB VRAM) via Ollama's bundled CUDA runtime, with 24GB DDR5 system RAM.
 * **State Management:** SQLite persistence configured with `timeout=10` to prevent database locking during heavy multi-threaded botnet swarms.
 
 ---
@@ -95,7 +95,7 @@ To clear the RAM-disk memory and unban yourself after manual testing:
 ---
 
 ## 🛡️ RULES OF ENGAGEMENT
-Ghost-Sentinel includes a modular legal/ethical toggle (`ACTIVE_RECON`) in the master script:
+AEROGIS includes a modular legal/ethical toggle (`ACTIVE_RECON`) in the master script:
 * **Passive Defense (default, False):** Silently logs, drops the connection, and sends telemetry. Suitable for public internet deployments.
 * **Active Defense (True):** Intended for internal LANs or authorized CTF ranges only. Fires an `nmap` port-scan back at the attacker's IP to map their OS and open services.
 
