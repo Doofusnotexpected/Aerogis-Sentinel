@@ -1,9 +1,26 @@
-config.py
-ghost_memory.db
-rockyou.txt
-*.csv
-*.json
+# Python Environment
 __pycache__/
+venv/
+
+# Environment & Configs
+config.py
+.env
 FileKey
 FileKey.pub
-venv/
+
+# Databases & Volatile Memory
+ghost_memory.db
+*.db
+*.shm
+/dev/shm/
+
+# Telemetry, Logs & Wordlists
+rockyou.txt
+threat_intel.jsonl
+stolen_credentials.txt
+*.json
+*.jsonl
+*.csv
+*.log
+siphon_tester.py
+*.Zone.Identifier
