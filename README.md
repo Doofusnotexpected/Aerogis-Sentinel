@@ -11,7 +11,6 @@
 
 AEROGIS is a multi-threaded active defense cell built to solve a specific problem: running local LLM forensics without bottlenecking a host firewall. It uses a tiered logic gate, `nftables` high-speed sets, and a local AI to neutralize, analyze, and exile malicious actors in real-time.
 
-![Glass Aegis v1.2 C2 Dashboard](assets/dashboard.png)
 
 ---
 
@@ -23,6 +22,7 @@ Ghost-Sentinel solves this using a dual-cache mathematical pre-filter before the
 1. **O(1) Exact Match (LRU):** A native Python `OrderedDict` immediately catches and drops perfectly identical botnet payloads.
 2. **Semantic Clustering (SimHash):** The system applies MD5-deterministic hashing to the payload, extracting 3-gram features into a 64-bit integer. It then calculates the Hamming distance against a deque cache (`maxlen=1000`). If an attacker slightly alters a few bytes to bypass basic filters, the Siphon recognizes the near-identical intent and drops the job from the AI queue, saving compute cycles.
 
+Neural Siphon Overview
 ![Aerogis Neural Siphon Proof](assets/siphon_proof.png)
 
 ---
@@ -33,6 +33,7 @@ This architecture has been tested against the following threat vectors:
 * **Automated Recon (libssh/Nmap SSH Enumeration):** Correctly classified as reconnaissance rather than active exploitation by DeepSeek-R1, no false-positive ban triggered.
 * **Manual Breaches (Netcat):** Trapped manual injections, logging payloads like `cat /etc/shadow` and issuing context-aware perma-bans based on attacker intent.
 
+Hydra (64) Overview
 ![Hydra 64-Thread Swarm Neutralized](assets/hydra_denied.png)
 
 ---
@@ -44,6 +45,9 @@ This architecture has been tested against the following threat vectors:
 * **Layer 3 (The Dollhouse):** Protocol-agnostic low-interaction trap. Mimics an Ubuntu 24.04 LTS shell on Port 2222. Spoofs `passwords.txt`, kernel data (`uname`), and blocks binary downloads (`wget`/`curl`) with realistic "Permission denied" errors to keep attackers engaged.
 * **Layer 4 (The Neural Siphon):** The MD5-deterministic SimHash interceptor protecting the AI's VRAM.
 * **Layer 5 (The General & Glass Aegis):** **DeepSeek-R1 (8B)** asynchronously analyzes sanitized keystrokes to determine intent. Glass Aegis acts as the C2 dashboard, calculating dynamic "Sin Scores" based on time-decaying metrics (last 10 minutes) and sending strike reports to Discord.
+
+Glass Aergis v.1.2 Preview:
+![Glass Aegis v1.2 C2 Dashboard](assets/dashboard.png)
 
 ---
 
