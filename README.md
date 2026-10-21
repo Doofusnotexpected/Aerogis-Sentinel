@@ -11,6 +11,8 @@
 
 AEROGIS is a multi-threaded active defense cell built to solve a specific problem: running local LLM forensics without bottlenecking a host firewall. It uses a tiered logic gate, `nftables` high-speed sets, and a local AI to neutralize, analyze, and exile malicious actors in real-time.
 
+![Glass Aegis v1.2 C2 Dashboard](assets/dashboard.png)
+
 ---
 
 ## ⚙️ THE "CONTEXT EXHAUSTION" PROBLEM
@@ -21,6 +23,8 @@ Ghost-Sentinel solves this using a dual-cache mathematical pre-filter before the
 1. **O(1) Exact Match (LRU):** A native Python `OrderedDict` immediately catches and drops perfectly identical botnet payloads.
 2. **Semantic Clustering (SimHash):** The system applies MD5-deterministic hashing to the payload, extracting 3-gram features into a 64-bit integer. It then calculates the Hamming distance against a deque cache (`maxlen=1000`). If an attacker slightly alters a few bytes to bypass basic filters, the Siphon recognizes the near-identical intent and drops the job from the AI queue, saving compute cycles.
 
+![Aerogis Neural Siphon Proof](assets/siphon_proof.png)
+
 ---
 
 ## ⚔️ STRESS TEST RESULTS
@@ -28,6 +32,8 @@ This architecture has been tested against the following threat vectors:
 * **High-Volume Swarms (Telnet & SSH):** Neutralized Hydra attacks (16 parallel threads and 64) against the 14.3M RockYou wordlist across both Telnet and SSH. The `nftables` kernel-level block triggers fast enough to choke the tool, forcing its child processes to crash via connection timeouts.
 * **Automated Recon (libssh/Nmap SSH Enumeration):** Correctly classified as reconnaissance rather than active exploitation by DeepSeek-R1, no false-positive ban triggered.
 * **Manual Breaches (Netcat):** Trapped manual injections, logging payloads like `cat /etc/shadow` and issuing context-aware perma-bans based on attacker intent.
+
+![Hydra 64-Thread Swarm Neutralized](assets/hydra_denied.png)
 
 ---
 
