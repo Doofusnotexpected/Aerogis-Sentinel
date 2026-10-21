@@ -58,7 +58,7 @@ Glass Aergis v.1.2 Preview:
 
 ---
 
-## 🚀 INSTALLATION & DEPLOYMENT
+## ⬇️ INSTALLATION & DEPLOYMENT
 
 ### 1. Prerequisites
 This system interacts directly with the Linux kernel and requires a specific environment setup.
